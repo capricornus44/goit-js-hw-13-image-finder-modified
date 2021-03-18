@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta
+      name="Description"
+      content="Page to searching images from Pixabay API server"
+    />
+    <title>GOIT-JS-HW-13</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- THEME SWITCHER -->
+      <div class="toolbar">
+        <div class="theme-switch">
+          <svg
+            class="theme-switch__icon theme-switch__icon-sun"
+            role="img"
+            aria-label="Sun icon"
+          >
+            <use href="./img/sprite.svg#sun"></use>
+          </svg>
+
+          <div class="theme-switch__control">
+            <input
+              class="theme-switch__toggle"
+              type="checkbox"
+              name="theme"
+              id="theme-switch-toggle"
+              aria-label="Switcher between light theme and dark theme"
+            />
+            <label
+              aria-hidden="true"
+              class="theme-switch__track"
+              for="theme-switch-toggle"
+            >
+            </label>
+            <div aria-hidden="true" class="theme-switch__marker"></div>
+          </div>
+
+          <svg
+            class="theme-switch__icon theme-switch__icon-moon"
+            aria-label="Moon icon"
+          >
+            <use href="./img/sprite.svg#moon"></use>
+          </svg>
+        </div>
+      </div>
+      <!-- THEME SWITCHER END -->
+
+      <!-- MAIN CONTENT -->
+      <p class="app-name">
+        <span class="app-name__elem el-1">S</span>
+        <span class="app-name__elem el-2">e</span>
+        <span class="app-name__elem el-3">a</span>
+        <span class="app-name__elem el-4">r</span>
+        <span class="app-name__elem el-5">c</span>
+        <span class="app-name__elem el-6">h</span>
+      </p>
+      <form class="search-form" id="search-form">
+        <input
+          type="text"
+          name="query"
+          autocomplete="off"
+          placeholder="Search images..."
+          class="search"
+        />
+      </form>
+      <ul class="gallery"></ul>
+      <!-- MAIN CONTENT END -->
+      <!-- INFINITE SCROLL -->
+      <div class="page-load-status">
+        <div class="loader-ellips infinite-scroll-request dots-box">
+          <span class="loader-ellips__dot"></span>
+          <span class="loader-ellips__dot"></span>
+          <span class="loader-ellips__dot"></span>
+          <span class="loader-ellips__dot"></span>
+        </div>
+
+        <!-- <p class="infinite-scroll-request">Loading...</p> -->
+        <!-- <p class="infinite-scroll-last">End of content</p>
+        <p class="infinite-scroll-error">No more pages to load</p> -->
+      </div>
+      <!-- INFINITE SCROLL END -->
+    </div>
+  </body>
+</html>
