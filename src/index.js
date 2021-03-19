@@ -13,7 +13,7 @@ import onOpenModal from './js/modal';
 
 import './js/theme';
 
-//========================= <GALLERY RENDERING> ==================================
+//========================= <GALLERY RENDERING> ============================
 const apiService = new ApiService();
 
 refs.searchForm.addEventListener('submit', onSearch);
@@ -45,10 +45,10 @@ function clearGallery() {
   refs.gallery.innerHTML = '';
 }
 
-function printGallery(hits) {
-  refs.gallery.insertAdjacentHTML('beforeend', galleryCardTpl(hits));
+function printGallery({ hits }) {
+  refs.gallery.insertAdjacentHTML('beforeend', galleryCardTpl({ hits }));
 }
-//========================= END <GALLERY RENDERING> ==================================
+//========================= END <GALLERY RENDERING> ============================
 
 //========================= <INFINITE SCROLL> ==================================
 const options = {
@@ -56,18 +56,22 @@ const options = {
   threshold: 0.05,
 };
 
-const onEntry = entries => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting || apiService.query === '') {
+const onIntersect = (data, observer) => {
+  data.forEach(hit => {
+    if (!hit.isIntersecting || apiService.query === '') {
       return;
     }
-    apiService.fetchArticles().then(data => {
-      printGallery(data);
+
+    apiService.fetchArticles().then(({ hits }) => {
+      printGallery({ hits });
     });
   });
+  if (apiService.isLastPage) {
+    observer.disconnect();
+  }
 };
 
-const observer = new IntersectionObserver(onEntry, options);
+const observer = new IntersectionObserver(onIntersect, options);
 
 observer.observe(refs.scroll);
 //========================= END <INFINITE SCROLL> ==================================
